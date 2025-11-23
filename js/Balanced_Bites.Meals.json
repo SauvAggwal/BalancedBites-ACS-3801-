@@ -1,0 +1,492 @@
+[{
+  "_id": {
+    "$oid": "691f35fa0e8fd80494514007"
+  },
+  "Name": "Chicken & Vegetable Stir-Fry",
+  "Description": "High-protein stir-fry loaded with vegetables.",
+  "Ingredients": [
+    {
+      "name": "Chicken Breast",
+      "amount": 200,
+      "unit": "g"
+    },
+    {
+      "name": "Broccoli",
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "name": "Carrots",
+      "amount": 1,
+      "unit": "piece"
+    },
+    {
+      "name": "Bell Pepper",
+      "amount": 1,
+      "unit": "piece"
+    },
+    {
+      "name": "Soy Sauce",
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Garlic",
+      "amount": 2,
+      "unit": "cloves"
+    },
+    {
+      "name": "Ginger",
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "name": "Olive Oil",
+      "amount": 1,
+      "unit": "tbsp"
+    }
+  ],
+  "Nutrition": {
+    "calories": 480,
+    "protein": 42,
+    "carbs": 28,
+    "fat": 18
+  },
+  "Steps": [
+    "Slice chicken and vegetables.",
+    "Heat oil and sauté garlic and ginger.",
+    "Add chicken and cook through.",
+    "Add vegetables and soy sauce.",
+    "Stir-fry for 5 minutes."
+  ],
+  "Diet": [
+    "high-protein"
+  ],
+  "TimeMinutes": 22
+},
+{
+  "_id": {
+    "$oid": "691f36d00e8fd8049451400a"
+  },
+  "Name": "Beef & Sweet Potato Meal Prep",
+  "Description": "Balanced meal prep bowl with carbs, protein, and vegetables.",
+  "Ingredients": [
+    {
+      "name": "Lean Ground Beef",
+      "amount": 200,
+      "unit": "g"
+    },
+    {
+      "name": "Sweet Potato",
+      "amount": 1,
+      "unit": "piece"
+    },
+    {
+      "name": "Green Beans",
+      "amount": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Garlic Powder",
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "name": "Paprika",
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "name": "Olive Oil",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Salt",
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "name": "Black Pepper",
+      "amount": 0.5,
+      "unit": "tsp"
+    }
+  ],
+  "Nutrition": {
+    "calories": 560,
+    "protein": 40,
+    "carbs": 55,
+    "fat": 20
+  },
+  "Steps": [
+    "Roast sweet potatoes.",
+    "Cook beef with spices.",
+    "Steam green beans.",
+    "Assemble into bowls."
+  ],
+  "Diet": [
+    "high-protein"
+  ],
+  "TimeMinutes": 30
+},
+{
+  "_id": {
+    "$oid": "691f36eb0e8fd8049451400c"
+  },
+  "Name": "Mediterranean Chickpea Salad",
+  "Description": "A fresh vegan salad rich in fiber and micronutrients.",
+  "Ingredients": [
+    {
+      "name": "Chickpeas",
+      "amount": 250,
+      "unit": "g"
+    },
+    {
+      "name": "Cherry Tomatoes",
+      "amount": 150,
+      "unit": "g"
+    },
+    {
+      "name": "Cucumber",
+      "amount": 1,
+      "unit": "piece"
+    },
+    {
+      "name": "Red Onion",
+      "amount": 0.25,
+      "unit": "piece"
+    },
+    {
+      "name": "Olives",
+      "amount": 50,
+      "unit": "g"
+    },
+    {
+      "name": "Parsley",
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Olive Oil",
+      "amount": 2,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Lemon Juice",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Salt",
+      "amount": 0.5,
+      "unit": "tsp"
+    },
+    {
+      "name": "Black Pepper",
+      "amount": 0.5,
+      "unit": "tsp"
+    }
+  ],
+  "Nutrition": {
+    "calories": 410,
+    "protein": 16,
+    "carbs": 52,
+    "fat": 15
+  },
+  "Steps": [
+    "Dice cucumber, tomatoes, and onion.",
+    "Combine all ingredients in a bowl.",
+    "Mix olive oil and lemon juice as dressing.",
+    "Toss and serve."
+  ],
+  "Diet": [
+    "vegan",
+    "gluten-free"
+  ],
+  "TimeMinutes": 12
+},
+{
+  "_id": {
+    "$oid": "691f37330e8fd8049451400e"
+  },
+  "Name": "Loaded Veggie Omelette",
+  "Description": "A big breakfast omelette filled with vegetables and protein.",
+  "Ingredients": [
+    {
+      "name": "Eggs",
+      "amount": 3,
+      "unit": "pieces"
+    },
+    {
+      "name": "Mushrooms",
+      "amount": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Bell Pepper",
+      "amount": 0.5,
+      "unit": "piece"
+    },
+    {
+      "name": "Spinach",
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "name": "Red Onion",
+      "amount": 0.25,
+      "unit": "piece"
+    },
+    {
+      "name": "Cheddar Cheese",
+      "amount": 40,
+      "unit": "g"
+    },
+    {
+      "name": "Salt",
+      "amount": 0.5,
+      "unit": "tsp"
+    },
+    {
+      "name": "Black Pepper",
+      "amount": 0.5,
+      "unit": "tsp"
+    },
+    {
+      "name": "Olive Oil",
+      "amount": 1,
+      "unit": "tbsp"
+    }
+  ],
+  "Nutrition": {
+    "calories": 420,
+    "protein": 29,
+    "carbs": 12,
+    "fat": 30
+  },
+  "Steps": [
+    "Sauté vegetables",
+    "Whisk eggs",
+    "Cook omelette",
+    "Add cheese and fold"
+  ],
+  "Diet": [
+    "vegetarian",
+    "high-protein"
+  ],
+  "TimeMinutes": 15
+},
+{
+  "_id": {
+    "$oid": "691f37570e8fd80494514010"
+  },
+  "Name": "Thai Peanut Chicken Bowl",
+  "Description": "A flavorful bowl with homemade peanut sauce.",
+  "Ingredients": [
+    {
+      "name": "Chicken Breast",
+      "amount": 200,
+      "unit": "g"
+    },
+    {
+      "name": "Brown Rice",
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "name": "Carrots",
+      "amount": 1,
+      "unit": "piece"
+    },
+    {
+      "name": "Red Cabbage",
+      "amount": 0.5,
+      "unit": "cup"
+    },
+    {
+      "name": "Peanut Butter",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Soy Sauce",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Lime Juice",
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "name": "Honey",
+      "amount": 1,
+      "unit": "tsp"
+    },
+    {
+      "name": "Garlic",
+      "amount": 1,
+      "unit": "clove"
+    }
+  ],
+  "Nutrition": {
+    "calories": 620,
+    "protein": 40,
+    "carbs": 65,
+    "fat": 22
+  },
+  "Steps": [
+    "Cook chicken and rice.",
+    "Prepare peanut sauce.",
+    "Assemble vegetables and bowl.",
+    "Top with sauce."
+  ],
+  "Diet": [
+    "high-protein"
+  ],
+  "TimeMinutes": 25
+},
+{
+  "_id": {
+    "$oid": "691f393b0e8fd80494514012"
+  },
+  "Name": "Grilled Salmon with Quinoa Salad",
+  "Description": "A healthy omega-3-rich salmon with a fresh quinoa salad.",
+  "Ingredients": [
+    {
+      "name": "Salmon Fillet",
+      "amount": 200,
+      "unit": "g"
+    },
+    {
+      "name": "Quinoa",
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "name": "Cucumber",
+      "amount": 1,
+      "unit": "piece"
+    },
+    {
+      "name": "Cherry Tomatoes",
+      "amount": 100,
+      "unit": "g"
+    },
+    {
+      "name": "Olive Oil",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Lemon Juice",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Salt",
+      "amount": 0.5,
+      "unit": "tsp"
+    },
+    {
+      "name": "Black Pepper",
+      "amount": 0.5,
+      "unit": "tsp"
+    }
+  ],
+  "Nutrition": {
+    "calories": 520,
+    "protein": 42,
+    "carbs": 45,
+    "fat": 20
+  },
+  "Steps": [
+    "Cook quinoa as per instructions.",
+    "Grill salmon until cooked through.",
+    "Dice cucumber and tomatoes.",
+    "Mix quinoa with vegetables and olive oil.",
+    "Top with salmon and drizzle with lemon juice."
+  ],
+  "Diet": [
+    "high-protein",
+    "gluten-free"
+  ],
+  "TimeMinutes": 30
+},
+{
+  "_id": {
+    "$oid": "691f39540e8fd80494514014"
+  },
+  "Name": "Vegan Buddha Bowl",
+  "Description": "Colorful vegan bowl with a variety of vegetables, grains, and legumes.",
+  "Ingredients": [
+    {
+      "name": "Brown Rice",
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "name": "Chickpeas",
+      "amount": 150,
+      "unit": "g"
+    },
+    {
+      "name": "Carrots",
+      "amount": 1,
+      "unit": "piece"
+    },
+    {
+      "name": "Red Cabbage",
+      "amount": 0.5,
+      "unit": "cup"
+    },
+    {
+      "name": "Spinach",
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "name": "Avocado",
+      "amount": 0.5,
+      "unit": "piece"
+    },
+    {
+      "name": "Tahini",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Lemon Juice",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Olive Oil",
+      "amount": 1,
+      "unit": "tbsp"
+    },
+    {
+      "name": "Salt",
+      "amount": 0.5,
+      "unit": "tsp"
+    }
+  ],
+  "Nutrition": {
+    "calories": 480,
+    "protein": 18,
+    "carbs": 60,
+    "fat": 18
+  },
+  "Steps": [
+    "Cook brown rice.",
+    "Roast or steam chickpeas and carrots.",
+    "Prepare vegetables and avocado.",
+    "Mix tahini, lemon juice, olive oil, and salt as dressing.",
+    "Assemble bowl with rice, vegetables, chickpeas, and dressing."
+  ],
+  "Diet": [
+    "vegan",
+    "gluten-free"
+  ],
+  "TimeMinutes": 25
+}]
