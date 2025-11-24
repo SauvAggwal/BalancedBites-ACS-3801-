@@ -21,8 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const profileBtn = document.getElementById('profileBtn');
     if (profileBtn) {
         profileBtn.addEventListener('click', function() {
-            const userEmail = sessionStorage.getItem('userEmail');
-            alert('Profile page coming soon!\nLogged in as: ' + (userEmail || 'User'));
+            window.location.href = 'profile.html';
         });
     }
     

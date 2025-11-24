@@ -6,7 +6,8 @@
     <title>BalancedBites - Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-   <header class="bg-white shadow-md sticky top-0 z-50">
+<body class="bg-gray-50">
+    <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-4 py-4 relative">
             <div class="flex items-center justify-between">
                 <a href="dashboard.html" class="text-2xl font-bold" style="color:#74A662;">BalancedBites</a>
@@ -34,3 +35,389 @@
             </div>
         </nav>
     </header>
+    
+    <main class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Page Header -->
+        <div class="mb-6">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Profile Settings</h1>
+            <p class="text-gray-600">Manage your account information and preferences</p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="bg-white rounded-lg shadow-sm mb-6">
+            <div class="flex border-b border-gray-200">
+                <button class="tab-btn px-6 py-3 font-medium text-gray-700 border-b-2 border-green-600 text-green-600" data-tab="profile">
+                    Profile
+                </button>
+                <button class="tab-btn px-6 py-3 font-medium text-gray-700 hover:text-green-600 transition" data-tab="goals">
+                    Goals
+                </button>
+                <button class="tab-btn px-6 py-3 font-medium text-gray-700 hover:text-green-600 transition" data-tab="security">
+                    Security
+                </button>
+            </div>
+        </div>
+
+        <!-- Profile Tab Content -->
+        <div id="profileTab" class="tab-content">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-6">Personal Information</h2>
+                
+                <form id="profileForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input 
+                                type="text" 
+                                id="profileName" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                placeholder="Enter your full name"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input 
+                                type="email" 
+                                id="profileEmail" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                placeholder="Enter your email"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                            <input 
+                                type="number" 
+                                id="profileAge" 
+                                min="1" 
+                                max="120"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                placeholder="Enter your age"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                            <select 
+                                id="profileGender" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                            >
+                                <option value="">Select gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                                <option value="prefer-not-to-say">Prefer not to say</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Weight (lbs)</label>
+                            <input 
+                                type="number" 
+                                id="profileWeight" 
+                                min="0" 
+                                step="0.1"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                placeholder="Enter your weight"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Height</label>
+                            <div class="flex space-x-2">
+                                <input 
+                                    type="number" 
+                                    id="profileHeightFeet" 
+                                    min="0" 
+                                    max="8"
+                                    class="w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                    placeholder="Feet"
+                                >
+                                <input 
+                                    type="number" 
+                                    id="profileHeightInches" 
+                                    min="0" 
+                                    max="11"
+                                    class="w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                    placeholder="Inches"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+                        <textarea 
+                            id="profileBio" 
+                            rows="4"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                            placeholder="Tell us about yourself..."
+                        ></textarea>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button 
+                            type="submit"
+                            class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                        >
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Goals Tab Content -->
+        <div id="goalsTab" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-6">Your Goals</h2>
+                
+                <form id="goalsForm" class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Weight Goals</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Current Weight (lbs)</label>
+                                <input 
+                                    type="number" 
+                                    id="goalCurrentWeight" 
+                                    min="0" 
+                                    step="0.1"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                    placeholder="Enter current weight"
+                                >
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Goal Weight (lbs)</label>
+                                <input 
+                                    type="number" 
+                                    id="goalWeight" 
+                                    min="0" 
+                                    step="0.1"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                    placeholder="Enter goal weight"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Body Type</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition">
+                                <input type="radio" name="bodyType" value="ectomorph" class="mr-3 text-green-600 focus:ring-green-500">
+                                <div>
+                                    <div class="font-medium text-gray-800">Ectomorph</div>
+                                    <div class="text-sm text-gray-600">Naturally thin, fast metabolism</div>
+                                </div>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition">
+                                <input type="radio" name="bodyType" value="mesomorph" class="mr-3 text-green-600 focus:ring-green-500">
+                                <div>
+                                    <div class="font-medium text-gray-800">Mesomorph</div>
+                                    <div class="text-sm text-gray-600">Naturally athletic, muscular</div>
+                                </div>
+                            </label>
+                            <label class="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition">
+                                <input type="radio" name="bodyType" value="endomorph" class="mr-3 text-green-600 focus:ring-green-500">
+                                <div>
+                                    <div class="font-medium text-gray-800">Endomorph</div>
+                                    <div class="text-sm text-gray-600">Naturally stocky, gains weight easily</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Nutrient Targets</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Daily Calorie Goal</label>
+                                <input 
+                                    type="number" 
+                                    id="goalCalories" 
+                                    min="0"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                    placeholder="Enter calorie goal"
+                                >
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Daily Protein Goal (g)</label>
+                                <input 
+                                    type="number" 
+                                    id="goalProtein" 
+                                    min="0" 
+                                    step="0.1"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                    placeholder="Enter protein goal"
+                                >
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Daily Carbohydrate Goal (g)</label>
+                                <input 
+                                    type="number" 
+                                    id="goalCarbs" 
+                                    min="0" 
+                                    step="0.1"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                    placeholder="Enter carb goal"
+                                >
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Daily Fat Goal (g)</label>
+                                <input 
+                                    type="number" 
+                                    id="goalFat" 
+                                    min="0" 
+                                    step="0.1"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                    placeholder="Enter fat goal"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Activity Level</h3>
+                        <select 
+                            id="goalActivityLevel" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                        >
+                            <option value="">Select activity level</option>
+                            <option value="sedentary">Sedentary (little to no exercise)</option>
+                            <option value="light">Lightly active (light exercise 1-3 days/week)</option>
+                            <option value="moderate">Moderately active (moderate exercise 3-5 days/week)</option>
+                            <option value="active">Very active (hard exercise 6-7 days/week)</option>
+                            <option value="very-active">Extra active (very hard exercise, physical job)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button 
+                            type="submit"
+                            class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                        >
+                            Save Goals
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Security Tab Content -->
+        <div id="securityTab" class="tab-content hidden">
+            <div class="space-y-6">
+                <!-- Password Section -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Change Password</h2>
+                    <form id="passwordForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+                            <input 
+                                type="password" 
+                                id="currentPassword" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                placeholder="Enter current password"
+                            >
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                            <input 
+                                type="password" 
+                                id="newPassword" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                placeholder="Enter new password"
+                            >
+                            <p class="text-xs text-gray-500 mt-1">Must be at least 8 characters long</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
+                            <input 
+                                type="password" 
+                                id="confirmPassword" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                placeholder="Confirm new password"
+                            >
+                        </div>
+                        <div class="flex justify-end">
+                            <button 
+                                type="submit"
+                                class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                            >
+                                Update Password
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Two-Factor Authentication -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-800">Two-Factor Authentication</h2>
+                            <p class="text-sm text-gray-600 mt-1">Add an extra layer of security to your account</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="twoFactorToggle" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                        </label>
+                    </div>
+                    <div id="twoFactorSetup" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                        <p class="text-sm text-gray-600 mb-3">Scan this QR code with your authenticator app:</p>
+                        <div class="bg-white p-4 rounded-lg inline-block mb-3">
+                            <div class="w-32 h-32 bg-gray-200 flex items-center justify-center">
+                                <span class="text-gray-400 text-xs">QR Code</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500">Use an app like Google Authenticator or Authy</p>
+                    </div>
+                </div>
+
+                <!-- Active Sessions -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Active Sessions</h2>
+                    <div id="sessionsList" class="space-y-3">
+                        <!-- Sessions will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Security Settings -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Security Settings</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-medium text-gray-800">Login Notifications</h3>
+                                <p class="text-sm text-gray-600">Get notified when someone logs into your account</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="loginNotifications" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                            </label>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="font-medium text-gray-800">Email Verification</h3>
+                                <p class="text-sm text-gray-600">Require email verification for sensitive actions</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="emailVerification" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-green-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="js/navigation.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
