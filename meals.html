@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BalancedBites - Meals</title>
+    <title>BalancedBites - Meal Tracking</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50">
@@ -12,12 +12,12 @@
         <nav class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-8">
-                        <a href="dashboard.html" class="text-2xl font-bold" style="color:#74A662;">BalancedBites</a>
+                    <a href="dashboard.html" class="text-2xl font-bold" style="color:#74A662;">BalancedBites</a>
                     <div class="hidden md:flex items-center space-x-6">
                         <a href="dashboard.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Dashboard</a>
                         <a href="meals.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Meals Page</a>
                         <a href="recipes.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Recipes</a>
-                        <a href="grocery.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Grocery</a>
+                        <a href="grocery.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Grocery List</a>
                         <a href="progress.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Progress</a>
                     </div>
                 </div>
@@ -39,14 +39,232 @@
         </nav>
     </header>
     
-    <main class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-8">Meals Page</h1>
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <p class="text-gray-600">Your meal planning and tracking will appear here.</p>
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Page Header -->
+        <div class="flex justify-between items-start mb-6">
+            <div>
+                <h1 class="text-4xl font-bold text-gray-800 mb-2">Meal Tracking</h1>
+                <p class="text-gray-600">Log your meals and track your daily nutrition intake</p>
+            </div>
+            <button id="logMealBtn" class="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                <span>Log Meal</span>
+            </button>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <label class="text-sm text-gray-600 mb-2 block">Date</label>
+                <div class="flex items-center space-x-2">
+                    <input 
+                        type="date" 
+                        id="datePicker" 
+                        class="flex-1 border-0 text-lg font-semibold text-gray-800 focus:ring-0 p-0"
+                    >
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="text-2xl font-bold text-gray-800" id="totalCalories">890</div>
+                <div class="text-sm text-gray-600 mt-1">of <span id="calorieGoal">2000</span> goal</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="text-2xl font-bold text-gray-800" id="totalProtein">58g</div>
+                <div class="text-sm text-gray-600 mt-1">of <span id="proteinGoal">120g</span> goal</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="text-2xl font-bold text-gray-800" id="mealsLogged">3</div>
+                <div class="text-sm text-gray-600 mt-1">meals logged <span id="mealsLoggedPeriod">today</span></div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="bg-white rounded-lg shadow-sm mb-6">
+            <div class="flex border-b border-gray-200">
+                <button class="tab-btn px-6 py-3 font-medium text-gray-700 border-b-2 border-green-600 text-green-600" data-tab="today">
+                    Today's Meals
+                </button>
+                <button class="tab-btn px-6 py-3 font-medium text-gray-700 hover:text-green-600 transition" data-tab="database">
+                    Food Database
+                </button>
+                <button class="tab-btn px-6 py-3 font-medium text-gray-700 hover:text-green-600 transition" data-tab="recent">
+                    Recent Foods
+                </button>
+            </div>
+        </div>
+
+        <!-- Today's Meals Tab Content -->
+        <div id="todayTab" class="tab-content">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Logged Meals</h2>
+                <div id="loggedMealsContainer" class="space-y-4">
+                    <!-- Logged meals will be dynamically inserted here -->
+                </div>
+                <div id="noMealsMessage" class="text-center py-12 text-gray-500 hidden">
+                    <p>No meals logged for this date. Click "Log Meal" to get started!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Food Database Tab Content -->
+        <div id="databaseTab" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Food Database</h2>
+                <div class="mb-4">
+                    <input 
+                        type="text" 
+                        id="searchFoodInput" 
+                        placeholder="Search meals..." 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                    >
+                </div>
+                <div id="foodDatabaseContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Meals from JSON will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Foods Tab Content -->
+        <div id="recentTab" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-4">Recent Foods</h2>
+                <div id="recentFoodsContainer" class="space-y-3">
+                    <!-- Recent foods will be displayed here -->
+                </div>
+                <div id="noRecentFoods" class="text-center py-12 text-gray-500 hidden">
+                    <p>No recent foods. Start logging meals to see them here!</p>
+                </div>
+            </div>
         </div>
     </main>
+
+    <!-- Log Meal Modal -->
+    <div id="logMealModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">Log Meal</h3>
+                    <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form id="logMealForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Meal Name</label>
+                        <input 
+                            type="text" 
+                            id="mealNameInput" 
+                            required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                            placeholder="Enter meal name"
+                        >
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Meal Type</label>
+                            <select 
+                                id="mealTypeInput" 
+                                required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                            >
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Snack">Snack</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Time</label>
+                            <input 
+                                type="time" 
+                                id="mealTimeInput" 
+                                required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Calories</label>
+                            <input 
+                                type="number" 
+                                id="caloriesInput" 
+                                required
+                                min="0"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                placeholder="0"
+                            >
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Protein (g)</label>
+                            <input 
+                                type="number" 
+                                id="proteinInput" 
+                                required
+                                min="0"
+                                step="0.1"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                placeholder="0"
+                            >
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Carbs (g)</label>
+                            <input 
+                                type="number" 
+                                id="carbsInput" 
+                                required
+                                min="0"
+                                step="0.1"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                                placeholder="0"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Fat (g)</label>
+                        <input 
+                            type="number" 
+                            id="fatInput" 
+                            required
+                            min="0"
+                            step="0.1"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                            placeholder="0"
+                        >
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button 
+                            type="button" 
+                            id="cancelLogBtn"
+                            class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                        >
+                            Cancel
+                        </button>
+                        <button 
+                            type="submit"
+                            class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                        >
+                            Log Meal
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     
     <script src="js/navigation.js"></script>
+    <script src="js/meals.js"></script>
 </body>
 </html>
-

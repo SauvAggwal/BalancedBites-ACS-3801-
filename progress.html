@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BalancedBites - Progress</title>
+    <title>BalancedBites - Progress Tracking</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Header Navigation -->
@@ -17,7 +18,7 @@
                         <a href="dashboard.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Dashboard</a>
                         <a href="meals.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Meals Page</a>
                         <a href="recipes.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Recipes</a>
-                        <a href="grocery.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Grocery</a>
+                        <a href="grocery.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Grocery List</a>
                         <a href="progress.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Progress</a>
                     </div>
                 </div>
@@ -39,14 +40,229 @@
         </nav>
     </header>
     
-    <main class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-8">Progress</h1>
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <p class="text-gray-600">Track your nutrition and health progress here.</p>
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Page Header -->
+        <div class="flex justify-between items-start mb-6">
+            <div>
+                <h1 class="text-4xl font-bold text-gray-800 mb-2">Progress Tracking</h1>
+                <p class="text-gray-600">Monitor your nutrition journey and celebrate your achievements</p>
+            </div>
+            <button id="setGoalBtn" class="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition font-medium">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>Set New Goal</span>
+            </button>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-2xl font-bold text-gray-800" id="weightLost">8</div>
+                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                </div>
+                <div class="text-sm text-gray-600">Weight lost</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-2xl font-bold text-gray-800" id="toGoal">7</div>
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <div class="text-sm text-gray-600">To goal</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-2xl font-bold text-gray-800" id="daysTracking">127</div>
+                    <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <div class="text-sm text-gray-600">Days tracking</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-2xl font-bold text-gray-800" id="goalConsistency">92%</div>
+                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+                    </svg>
+                </div>
+                <div class="text-sm text-gray-600">Goal consistency</div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="bg-white rounded-lg shadow-sm mb-6">
+            <div class="flex border-b border-gray-200">
+                <button class="tab-btn px-6 py-3 font-medium text-gray-700 border-b-2 border-green-600 text-green-600" data-tab="weight">
+                    Weight Progress
+                </button>
+                <button class="tab-btn px-6 py-3 font-medium text-gray-700 hover:text-green-600 transition" data-tab="calories">
+                    Daily Calories
+                </button>
+                <button class="tab-btn px-6 py-3 font-medium text-gray-700 hover:text-green-600 transition" data-tab="macros">
+                    Macronutrients
+                </button>
+                <button class="tab-btn px-6 py-3 font-medium text-gray-700 hover:text-green-600 transition" data-tab="achievements">
+                    Achievements
+                </button>
+            </div>
+        </div>
+
+        <!-- Weight Progress Tab Content -->
+        <div id="weightTab" class="tab-content">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Weight Progress</h2>
+                    <p class="text-gray-600">Your weight journey over the past 6 months</p>
+                </div>
+                <div class="mb-6" style="position: relative; height: 400px;">
+                    <canvas id="weightChart"></canvas>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <div class="text-3xl font-bold text-gray-800" id="startingWeight">180</div>
+                        <div class="text-sm text-gray-600 mt-2">Starting weight</div>
+                    </div>
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <div class="text-3xl font-bold text-gray-800" id="currentWeight">172</div>
+                        <div class="text-sm text-gray-600 mt-2">Current weight</div>
+                    </div>
+                    <div class="text-center p-4 bg-gray-50 rounded-lg">
+                        <div class="text-3xl font-bold text-gray-800" id="goalWeight">165</div>
+                        <div class="text-sm text-gray-600 mt-2">Goal weight</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Calories Tab Content -->
+        <div id="caloriesTab" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Daily Calories</h2>
+                    <p class="text-gray-600">Your daily calorie intake over time</p>
+                </div>
+                <div style="position: relative; height: 400px;">
+                    <canvas id="caloriesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Macronutrients Tab Content -->
+        <div id="macrosTab" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Macronutrients</h2>
+                    <p class="text-gray-600">Your protein, carbs, and fat intake breakdown</p>
+                </div>
+                <div style="position: relative; height: 400px;">
+                    <canvas id="macrosChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Tab Content -->
+        <div id="achievementsTab" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Achievements</h2>
+                <div id="achievementsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Achievements will be dynamically inserted here -->
+                </div>
+            </div>
         </div>
     </main>
+
+    <!-- Set Goal Modal -->
+    <div id="setGoalModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">Set New Goal</h3>
+                    <button id="closeGoalModalBtn" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form id="setGoalForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Goal Weight (lbs)</label>
+                        <input 
+                            type="number" 
+                            id="goalWeightInput" 
+                            required
+                            min="0"
+                            step="0.1"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                            placeholder="Enter goal weight"
+                        >
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Current Weight (lbs)</label>
+                        <input 
+                            type="number" 
+                            id="currentWeightInput" 
+                            required
+                            min="0"
+                            step="0.1"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                            placeholder="Enter current weight"
+                        >
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Daily Calorie Goal</label>
+                        <input 
+                            type="number" 
+                            id="calorieGoalInput" 
+                            required
+                            min="0"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                            placeholder="Enter calorie goal"
+                        >
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Daily Protein Goal (g)</label>
+                        <input 
+                            type="number" 
+                            id="proteinGoalInput" 
+                            required
+                            min="0"
+                            step="0.1"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                            placeholder="Enter protein goal"
+                        >
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button 
+                            type="button" 
+                            id="cancelGoalBtn"
+                            class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                        >
+                            Cancel
+                        </button>
+                        <button 
+                            type="submit"
+                            class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                        >
+                            Set Goal
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     
     <script src="js/navigation.js"></script>
+    <script src="js/progress.js"></script>
 </body>
 </html>
-
