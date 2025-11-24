@@ -9,21 +9,16 @@
 <body class="bg-gray-50">
     <!-- Header Navigation -->
     <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-4 py-4">
+        <nav class="container mx-auto px-4 py-4 relative">
             <div class="flex items-center justify-between">
-                <!-- Logo and Navigation Links -->
-                <div class="flex items-center space-x-8">
-                       <a href="dashboard.html" class="text-2xl font-bold" style="color:#74A662;">BalancedBites</a>
-                    <div class="hidden md:flex items-center space-x-6"> <!--This is the line I was having issues with-->
-                        <a href="dashboard.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Dashboard</a>
-                        <a href="meals.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Meals Page</a>
-                        <a href="recipes.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Recipes</a>
-                        <a href="grocery.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Grocery List</a>
-                        <a href="progress.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Progress</a>
-                    </div>
+                <a href="dashboard.html" class="text-2xl font-bold" style="color:#74A662;">BalancedBites</a>
+                <div class="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
+                    <a href="dashboard.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Dashboard</a>
+                    <a href="meals.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Meals Page</a>
+                    <a href="recipes.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Recipes</a>
+                    <a href="grocery.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Grocery List</a>
+                    <a href="progress.html" class="text-gray-700 hover:text-purple-600 font-medium transition">Progress</a>
                 </div>
-                
-                <!-- Profile and Logout Buttons -->
                 <div class="flex items-center space-x-4">
                     <button id="profileBtn" class="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -39,48 +34,252 @@
                     </button>
                 </div>
             </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="md:hidden mt-4 hidden">
-                <div class="flex flex-col space-y-2">
-                    <a href="dashboard.html" class="px-4 py-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition">Dashboard</a>
-                    <a href="meals.html" class="px-4 py-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition">Meals Page</a>
-                    <a href="recipes.html" class="px-4 py-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition">Recipes</a>
-                    <a href="grocery.html" class="px-4 py-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition">Grocery List</a>
-                    <a href="progress.html" class="px-4 py-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition">Progress</a>
-                </div>
-            </div>
         </nav>
     </header>
     
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-    
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Dashboard</h1>
-            <p class="text-gray-600">Welcome to BalancedBites! Track your nutrition journey here.</p>
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Page Header -->
+        <div class="mb-6">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Today's Meal Plan</h1>
+            <p class="text-gray-600" id="currentDate"></p>
+            <p class="text-gray-600 mt-1">Track your meals and stay on top of your nutrition goals.</p>
         </div>
-        
-        <!-- Dashboard Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Today's Meals</h3>
-                <p class="text-gray-600">Plan and track your daily meals</p>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Meals Logged</p>
+                        <p class="text-2xl font-bold text-gray-800" id="mealsLogged">2/4</p>
+                    </div>
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
             </div>
             
-            <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Recipes</h3>
-                <p class="text-gray-600">Discover healthy recipes</p>
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Calories</p>
+                        <p class="text-2xl font-bold text-gray-800" id="caloriesCount">900</p>
+                        <p class="text-xs text-gray-500 mt-1">of <span id="calorieGoal">2000</span></p>
+                    </div>
+                    <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
+                    </svg>
+                </div>
             </div>
             
-            <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Grocery List</h3>
-                <p class="text-gray-600">Manage your shopping list</p>
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Streak</p>
+                        <p class="text-2xl font-bold text-gray-800" id="streakDays">12 days</p>
+                    </div>
+                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Meal Prep</p>
+                        <p class="text-2xl font-bold text-gray-800" id="mealPrepDays">2 days</p>
+                    </div>
+                    <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <!-- Nutrition Progress -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-1">Nutrition Progress</h2>
+                <p class="text-sm text-gray-600 mb-4">Today's macronutrient breakdown</p>
+                
+                <div class="space-y-4">
+                    <!-- Calories -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700">Calories</span>
+                            </div>
+                            <span class="text-sm text-gray-600" id="caloriesDisplay">900 / 2000</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-orange-500 h-2.5 rounded-full" id="caloriesProgress" style="width: 45%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1" id="caloriesRemaining">1100 cal remaining</p>
+                    </div>
+                    
+                    <!-- Protein -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium text-gray-700">Protein</span>
+                            <span class="text-sm text-gray-600" id="proteinDisplay">60g / 150g</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-500 h-2.5 rounded-full" id="proteinProgress" style="width: 40%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carbohydrates -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium text-gray-700">Carbohydrates</span>
+                            <span class="text-sm text-gray-600" id="carbsDisplay">73g / 200g</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-green-500 h-2.5 rounded-full" id="carbsProgress" style="width: 36.5%"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Fat -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-medium text-gray-700">Fat</span>
+                            <span class="text-sm text-gray-600" id="fatDisplay">46g / 65g</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-yellow-500 h-2.5 rounded-full" id="fatProgress" style="width: 70.8%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Water Intake -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <h2 class="text-lg font-semibold text-gray-800 mb-1">Water Intake</h2>
+                <p class="text-sm text-gray-600 mb-4">Stay hydrated</p>
+                
+                <div class="text-center mb-4">
+                    <div class="w-16 h-16 mx-auto mb-2 flex items-center justify-center">
+                        <svg class="w-full h-full text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.69C8.5 2.69 5.69 5.5 5.69 9c0 3.5 6.31 10.31 6.31 10.31S18.31 12.5 18.31 9c0-3.5-2.81-6.31-6.31-6.31z"/>
+                        </svg>
+                    </div>
+                    <p class="text-lg font-semibold text-gray-800" id="waterGlasses">0 of 8 glasses</p>
+                </div>
+                
+                <div class="flex space-x-2 mb-4">
+                    <input 
+                        type="number" 
+                        id="waterInput" 
+                        min="1" 
+                        max="8" 
+                        placeholder="1"
+                        class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    >
+                    <button 
+                        id="addWaterBtn"
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                    >
+                        + Add Glass
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-4 gap-2">
+                    <div class="water-glass bg-gray-200 rounded h-12" data-glass="1"></div>
+                    <div class="water-glass bg-gray-200 rounded h-12" data-glass="2"></div>
+                    <div class="water-glass bg-gray-200 rounded h-12" data-glass="3"></div>
+                    <div class="water-glass bg-gray-200 rounded h-12" data-glass="4"></div>
+                    <div class="water-glass bg-gray-200 rounded h-12" data-glass="5"></div>
+                    <div class="water-glass bg-gray-200 rounded h-12" data-glass="6"></div>
+                    <div class="water-glass bg-gray-200 rounded h-12" data-glass="7"></div>
+                    <div class="water-glass bg-gray-200 rounded h-12" data-glass="8"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Week Overview and Meal Prep -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <!-- Week Overview -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800 mb-1">Week Overview</h2>
+                        <p class="text-sm text-gray-600">Your meal plan for the week</p>
+                    </div>
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                
+                <div class="flex space-x-2 mb-4" id="weekDays">
+                    <!-- Days will be dynamically inserted here -->
+                </div>
+                
+                <button 
+                    onclick="window.location.href='meals.html'"
+                    class="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center justify-center space-x-2"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>Plan This Week</span>
+                </button>
+            </div>
+
+            <!-- Meal Prep Tasks -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-800 mb-1">Meal Prep Tasks</h2>
+                        <p class="text-sm text-gray-600">Prepare for the week ahead</p>
+                    </div>
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                    </svg>
+                </div>
+                
+                <div id="mealPrepTasks" class="space-y-3 mb-4">
+                    <!-- Tasks will be dynamically inserted here -->
+                </div>
+                
+                <button 
+                    id="addTaskBtn"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                >
+                    + Add Task
+                </button>
+            </div>
+        </div>
+
+        <!-- Grocery List -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800 mb-1">Grocery List</h2>
+                    <p class="text-sm text-gray-600">Items needed for this week's meal plan</p>
+                </div>
+                <button 
+                    onclick="window.location.href='grocery.html'"
+                    class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center space-x-2"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span>View Full List</span>
+                </button>
+            </div>
+            
+            <div id="groceryListItems" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <!-- Grocery items will be dynamically inserted here -->
             </div>
         </div>
     </main>
     
     <script src="js/navigation.js"></script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
-
